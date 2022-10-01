@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Industrial()));
+                                  builder: (context) => const Industrial()));
                         },
                         child: Container(
                           // height: 30,
@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Commercial()));
+                                  builder: (context) => const Commercial()));
                         },
                         child: Container(
                           // height: 30,
@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Residential()));
+                                  builder: (context) => const Residential()));
                         },
                         child: Container(
                           // height: 30,
@@ -206,7 +206,7 @@ class PopularPropertyStream extends StatelessWidget {
             ? ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                physics: ScrollPhysics(),
+                physics: const ScrollPhysics(),
                 itemCount: snapshot.data.docs.length,
                 itemBuilder: (context, index) {
                   return PopularProperty(
@@ -217,7 +217,7 @@ class PopularPropertyStream extends StatelessWidget {
                     category: snapshot.data.docs[index].data()["category"],
                   );
                 })
-            : CircularProgressIndicator();
+            : const CircularProgressIndicator();
       },
     );
   }
@@ -262,12 +262,16 @@ class PopularProperty extends StatelessWidget {
                 Container(
                   width: size.width * 1,
                   height: 250,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: ExactAssetImage(image), fit: BoxFit.fill),
-                    borderRadius: const BorderRadius.only(
+                  decoration: const BoxDecoration(
+                    // image: DecorationImage(
+                    //     image: Image.network(image), fit: BoxFit.fill),
+                    borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20)),
+                  ),
+                  child: Image.network(
+                    image,
+                    fit: BoxFit.fill,
                   ),
                 ),
                 Positioned(
@@ -277,7 +281,7 @@ class PopularProperty extends StatelessWidget {
                     decoration: const BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20),
+                            // topRight: Radius.circular(20),
                             bottomLeft: Radius.circular(20))),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),

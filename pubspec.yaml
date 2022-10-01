@@ -42,6 +42,9 @@ dependencies:
   # swipable_stack: ^2.0.0
   firebase_core: ^1.23.0
   cloud_firestore: ^3.4.9
+  firebase_storage: ^10.3.10
+  image_picker: ^0.8.5+3
+  permission_handler: ^10.0.2
 
 dev_dependencies:
   flutter_test:

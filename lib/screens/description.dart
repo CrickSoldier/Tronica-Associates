@@ -179,7 +179,7 @@ class PropertyImageHeader extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: size.height * .5,
+          height: size.height * .7,
           // decoration: BoxDecoration(
           //     color: Colors.green,
           //     borderRadius: BorderRadius.only(
@@ -187,7 +187,8 @@ class PropertyImageHeader extends StatelessWidget {
           //         bottomRight: Radius.circular(30))),
         ),
         Container(
-          height: size.height * .45,
+          height: size.height * .65,
+          width: double.infinity,
           decoration: BoxDecoration(
               color: const Color.fromARGB(179, 0, 183, 255).withOpacity(.2),
               borderRadius: const BorderRadius.only(
@@ -195,7 +196,7 @@ class PropertyImageHeader extends StatelessWidget {
                   bottomRight: Radius.circular(35))),
           child: Hero(
             tag: image,
-            child: Image.asset(
+            child: Image.network(
               image,
               fit: BoxFit.fill,
             ),

@@ -33,12 +33,14 @@ class _ResidentialState extends State<Residential> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 103, 56),
+        backgroundColor: const Color.fromARGB(255, 255, 103, 56),
         title: Builder(builder: (context) {
-          return Text(
-            "Resindetal Properties",
-            style:
-                GoogleFonts.roboto(textStyle: TextStyle(color: Colors.white)),
+          return Center(
+            child: Text(
+              "Residential Properties",
+              style: GoogleFonts.roboto(
+                  textStyle: const TextStyle(color: Colors.white)),
+            ),
           );
         }),
       ),
@@ -48,7 +50,7 @@ class _ResidentialState extends State<Residential> {
             const SizedBox(
               height: 25,
             ),
-            PopularPropertyStream(postStream: postStream),
+            PropertyStream(postStream: postStream),
           ],
         ),
       ),
@@ -56,8 +58,8 @@ class _ResidentialState extends State<Residential> {
   }
 }
 
-class PopularPropertyStream extends StatelessWidget {
-  const PopularPropertyStream({
+class PropertyStream extends StatelessWidget {
+  const PropertyStream({
     Key? key,
     required this.postStream,
   }) : super(key: key);
@@ -76,7 +78,7 @@ class PopularPropertyStream extends StatelessWidget {
                 physics: const ScrollPhysics(),
                 itemCount: snapshot.data.docs.length,
                 itemBuilder: (context, index) {
-                  return PopularProperty(
+                  return Property(
                     image: snapshot.data.docs[index].data()["image"],
                     sector: snapshot.data.docs[index].data()["sector"],
                     area: snapshot.data.docs[index].data()["area"],
@@ -84,14 +86,14 @@ class PopularPropertyStream extends StatelessWidget {
                     category: snapshot.data.docs[index].data()["category"],
                   );
                 })
-            : Center(child: const CircularProgressIndicator());
+            : const Center(child: CircularProgressIndicator());
       },
     );
   }
 }
 
-class PopularProperty extends StatelessWidget {
-  const PopularProperty({
+class Property extends StatelessWidget {
+  const Property({
     Key? key,
     required this.image,
     required this.sector,
@@ -129,12 +131,14 @@ class PopularProperty extends StatelessWidget {
                 Container(
                   width: size.width * 1,
                   height: 250,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: ExactAssetImage(image), fit: BoxFit.fill),
-                    borderRadius: const BorderRadius.only(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20)),
+                  ),
+                  child: Image.network(
+                    image,
+                    fit: BoxFit.fill,
                   ),
                 ),
                 Positioned(
@@ -144,7 +148,7 @@ class PopularProperty extends StatelessWidget {
                     decoration: const BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20),
+                            // topRight: Radius.circular(20),
                             bottomLeft: Radius.circular(20))),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
